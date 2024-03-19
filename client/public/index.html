@@ -41,7 +41,7 @@
                 <div class="form-group">
                     <input type="password" placeholder="Password" class="form-control">
                 </div>
-                <button type="submit" class="btn btn-primary">Login</button>
+                <button type="button" onclick="loginClick()" class="btn btn-primary">Login</button>
             </form>
         </div>
         <div class="signup-form" id="signupForm" style="display: none;">
@@ -71,6 +71,10 @@
             document.getElementById("signupForm").style.display = "block";
             document.getElementById("loginForm").style.display = "none";
             document.getElementById("formInput").scrollIntoView({ behavior: "smooth", block: "center", inline: "nearest" });
+        }
+        function loginClick(){
+            //Prolly have to use storage to keep track of credentials etc...
+            window.location.href = "pages/main.html"
         }
     </script>
 </body>
