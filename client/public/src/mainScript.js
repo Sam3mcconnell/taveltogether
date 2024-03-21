@@ -30,7 +30,7 @@ function handleSearchInput(cards) {
   });
 }
 
-const storedCards = sessionStorage.getItem("cards");
+const storedCards = null;//sessionStorage.getItem("cards"); 
 if (storedCards) {
   const parsedCards = JSON.parse(storedCards);
   renderCards(parsedCards);
@@ -41,7 +41,6 @@ if (storedCards) {
     .then((data) => {
       sessionStorage.setItem("cards", JSON.stringify(data));
       renderCards(data);
-      handleSearchInput(data);
     })
     .catch((error) => console.error("Error fetching cards:", error));
 }
