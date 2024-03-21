@@ -1,3 +1,15 @@
+/**
+ * @typedef {Object} card
+ * @property {string} title Title of the card
+ * @property {string} description Description of the card
+ */
+//TODO:
+//The type above should be defined in a type file. Just like this: https://stackoverflow.com/questions/43183450/jsdoc-typedef-in-a-separate-file
+//Just makes our life easier in the future. We could also do TS if we feel like it
+
+/**
+ * @param {Array.<card>} cards Array of cards
+ */
 function renderCards(cards) {
   const cardContainer = document.getElementById("cardContainer");
   cardContainer.innerHTML = "";
@@ -11,7 +23,12 @@ function renderCards(cards) {
     cardContainer.appendChild(cardElement);
   });
 }
-
+/**
+ * 
+ * @param {Array.<card>} cards 
+ * @param {string} searchTerm 
+ * @returns {Array.<card>}
+ */
 function filterCards(cards, searchTerm) {
   return cards.filter((card) => {
     return (
@@ -20,7 +37,10 @@ function filterCards(cards, searchTerm) {
     );
   });
 }
-
+/**
+ * 
+ * @param {Array.<card>} cards 
+ */
 function handleSearchInput(cards) {
   const searchInput = document.getElementById("searchInput");
   searchInput.addEventListener("input", () => {

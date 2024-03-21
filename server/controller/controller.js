@@ -1,3 +1,9 @@
+
+/**
+ * Returns "cards" (itinerarys) name needs to be changed in the future
+ * @param {Request} req - Request where you can specify search criterias etc in the future
+ * @param {Response} res - Responses the itinerarys which have been specified.
+ */
 export async function getCards(req, res) {
   //Here we put the db fetching etc
   const cardsData = [
