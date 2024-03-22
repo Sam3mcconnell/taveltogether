@@ -31,9 +31,13 @@ async function populateItineraries(dbActivities) {
   const itinerariesData = [
     {
       activities: [dbActivities[0]._id, dbActivities[1]._id],
+      description:"Active trip with seeing the 2 best tourist attractions",
+      title:"Great active 1 day trip in Hong Kong"
     },
     {
       activities: [dbActivities[2]._id],
+      description:"Relax and just chill with a pina colada in your hand.",
+      title:"1 Day relaxing getaway from the world trip in HK"
     },
   ];
   try {

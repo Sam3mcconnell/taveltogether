@@ -1,3 +1,4 @@
+import { fetchCardDetails, fetchCards } from "./apiCalls.js";
 /**
  * @typedef {Object} card
  * @property {string} title Title of the card
@@ -20,13 +21,17 @@ function renderCards(cards) {
             <h3>${card.title}</h3>
             <p>${card.description}</p>
         `;
+    // cardElement.onclick = handleCardClick(card._id)
+    cardElement.onclick = function () {
+      handleCardClick(card._id);
+    };
     cardContainer.appendChild(cardElement);
   });
 }
 /**
- * 
- * @param {Array.<card>} cards 
- * @param {string} searchTerm 
+ *
+ * @param {Array.<card>} cards
+ * @param {string} searchTerm
  * @returns {Array.<card>}
  */
 function filterCards(cards, searchTerm) {
@@ -38,8 +43,8 @@ function filterCards(cards, searchTerm) {
   });
 }
 /**
- * 
- * @param {Array.<card>} cards 
+ *
+ * @param {Array.<card>} cards
  */
 function handleSearchInput(cards) {
   const searchInput = document.getElementById("searchInput");
@@ -49,18 +54,29 @@ function handleSearchInput(cards) {
     renderCards(filteredCards);
   });
 }
+/**
+ * 
+ * @param {string} id string representation of the ObjectID fetched from db
+ */
+async function handleCardClick(id) {
+  const cardDataResponse = await fetchCardDetails(id);
+  if (cardDataResponse.status !== 200) {
+    console.log("error fetching card details");
+    //Maybe an icon or something here too?
+  } else {
+    const cardDetailsJson = await cardDataResponse.json();
+    sessionStorage.setItem(cardDetailsJson._id, JSON.stringify(cardDetailsJson));
+    const nextPageUrl = "../pages/cardDetails.html?id=" + cardDetailsJson._id;
+    window.location.href = nextPageUrl;
+  }
+}
 
-const storedCards = null;//sessionStorage.getItem("cards"); 
-if (storedCards) {
-  const parsedCards = JSON.parse(storedCards);
-  renderCards(parsedCards);
-  handleSearchInput(parsedCards);
+const initialCards = await fetchCards(0, 20);
+if (initialCards.status !== 200) {
+  console.log("error fetching cards");
+  //Maybe an icon triggered? and refresh try in x secounds?
 } else {
-  fetch("http://localhost:3000/api/getCards")
-    .then((response) => response.json())
-    .then((data) => {
-      sessionStorage.setItem("cards", JSON.stringify(data));
-      renderCards(data);
-    })
-    .catch((error) => console.error("Error fetching cards:", error));
+  const initialCardsJson = await initialCards.json();
+  renderCards(initialCardsJson);
+  handleSearchInput(initialCardsJson);
 }
