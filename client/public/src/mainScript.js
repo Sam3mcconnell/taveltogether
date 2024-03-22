@@ -1,4 +1,4 @@
-import { fetchCardDetails, fetchCards } from "./apiCalls.js";
+import { fetchCards } from "./apiCalls.js";
 /**
  * @typedef {Object} card
  * @property {string} title Title of the card
@@ -55,20 +55,12 @@ function handleSearchInput(cards) {
   });
 }
 /**
- * 
+ *
  * @param {string} id string representation of the ObjectID fetched from db
  */
 async function handleCardClick(id) {
-  const cardDataResponse = await fetchCardDetails(id);
-  if (cardDataResponse.status !== 200) {
-    console.log("error fetching card details");
-    //Maybe an icon or something here too?
-  } else {
-    const cardDetailsJson = await cardDataResponse.json();
-    sessionStorage.setItem(cardDetailsJson._id, JSON.stringify(cardDetailsJson));
-    const nextPageUrl = "../pages/cardDetails.html?id=" + cardDetailsJson._id;
-    window.location.href = nextPageUrl;
-  }
+  const nextPageUrl = "../pages/cardDetails.html?id=" + id;
+  window.location.href = nextPageUrl;
 }
 
 const initialCards = await fetchCards(0, 20);
