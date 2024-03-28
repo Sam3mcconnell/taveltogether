@@ -32,31 +32,96 @@
         <div class="login-form" id="loginForm" style="display: none;">
             <form action="">
                 <div class="form-group">
-                    <input type="text" placeholder="Username" class="form-control">
+                    <input type="email" placeholder="Email" class="form-control" id="emailLogin">
                 </div>
                 <div class="form-group">
-                    <input type="password" placeholder="Password" class="form-control">
+                    <input type="password" placeholder="Password" class="form-control" id="passwordLogin">
                 </div>
-                <button type="button" onclick="loginClick()" class="btn btn-primary">Login</button>
             </form>
+            <button id="login-btn" class="btn btn-primary">Login</button>
         </div>
-        <div class="signup-form" id="signupForm" style="display: none;">
-            <form action="">
+        <div class="" id="signupForm" style="display: none;">
+            <form id="signup-form" action="">
                 <div class="form-group">
-                    <input type="text" placeholder="Username" class="form-control">
+                    <input type="email" id="usernameSignUp" placeholder="Email" class="form-control">
                 </div>
                 <div class="form-group">
-                    <input type="password" placeholder="Password" class="form-control">
+                    <input type="password" placeholder="Password" id="fPassword" class="form-control">
                 </div>
                 <div class="form-group">
-                    <input type="password" placeholder="Confirm Password" class="form-control">
+                    <input type="password" placeholder="Confirm Password" id="sPassword" class="form-control">
                 </div>
-                <button type="submit" class="btn btn-primary">Sign Up</button>
+               
             </form>
+            <button id="signup-btn" class="btn btn-primary">Sign Up</button>
         </div>
     </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
+        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-auth.js";
+
+        const firebaseConfig = {
+          apiKey: "AIzaSyAnxmEnlB9jCL69q4RIwuzvOqoW7czSJQs",
+          authDomain: "traveltogether-b40d8.firebaseapp.com",
+          projectId: "traveltogether-b40d8",
+          storageBucket: "traveltogether-b40d8.appspot.com",
+          messagingSenderId: "287362823720",
+          appId: "1:287362823720:web:a6f555e14944d20e22a71d"
+        };
+      
+        // // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth();
+
+        const signup = document.getElementById("signup-btn")
+        const login = document.getElementById("login-btn")
         
+
+
+        const userSignUp = async() => {
+            const email = document.getElementById("usernameSignUp").value
+            const fPassword = document.getElementById("fPassword").value
+            const sPassword = document.getElementById("sPassword").value
+            if (fPassword == sPassword) {
+                createUserWithEmailAndPassword(auth, email, fPassword)
+                .then((userCredential) => {
+                    // Signed up 
+                    const user = userCredential.user;
+                    sessionStorage.setItem('uid', user.uid);
+                    window.location.href = "./pages/main.html";
+                })
+                .catch((error) => {
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                });
+            } else {
+                alert("Passwords must mach")
+            }
+            
+        }
+        const userLogIn = async() => {
+            const email = document.getElementById("emailLogin").value
+            const password = document.getElementById("passwordLogin").value 
+            signInWithEmailAndPassword(auth, email, password)
+                .then((userCredential) => {
+                    const user = userCredential.user;
+                    sessionStorage.setItem('uid', user.uid);
+                    window.location.href = "./pages/main.html";
+                })
+                .catch((error) => {
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                });
+        }
+        signup.addEventListener('click', userSignUp);
+        login.addEventListener('click', userLogIn);
+
+
+    </script>
     <script>
+     
+        
         function showLoginForm() {
             document.getElementById("loginForm").style.display = "block";
             document.getElementById("signupForm").style.display = "none";
@@ -68,10 +133,6 @@
             document.getElementById("loginForm").style.display = "none";
             document.getElementById("formInput").scrollIntoView({ behavior: "smooth", block: "center", inline: "nearest" });
         }
-        function loginClick(){
-            //Prolly have to use storage to keep track of credentials etc...
-            window.location.href = "pages/main.html"
-        }
-    </script>
+      </script>
 </body>
 </html>

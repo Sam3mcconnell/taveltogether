@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8"/>
+        <title>Side Menu Bar</title>
+        <link rel="stylesheet" href="nav_styles.css"/>
+        <script src="https://kit.fontawesome.com/c7f2c86583.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <nav>
+            <ul>
+                <li>
+                    <a href="main.html">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <span class="nav-item">Search</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="create_itenerary.html">
+                        <i class="fa-solid fa-plus"></i>
+                        <span class="nav-item">Create</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="my-iteneraries.html">
+                        <i class="fa-solid fa-user"></i>
+                        <span class="nav-item">My Iteneraries</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../index.html" id="logout-link" onclick="handleSignOut">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                        <span class="nav-item">Log out</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <script>
+            
+            // import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
+            // import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-auth.js";
+
+            // const firebaseConfig = {
+            // apiKey: "AIzaSyAnxmEnlB9jCL69q4RIwuzvOqoW7czSJQs",
+            // authDomain: "traveltogether-b40d8.firebaseapp.com",
+            // projectId: "traveltogether-b40d8",
+            // storageBucket: "traveltogether-b40d8.appspot.com",
+            // messagingSenderId: "287362823720",
+            // appId: "1:287362823720:web:a6f555e14944d20e22a71d"
+            // };
+
+            // const app = initializeApp(firebaseConfig);
+            // const auth = getAuth();
+
+            const handleSignOut = async() => {
+                window.location.href = "../index.html";
+                // signOut(auth).then(() => {
+                //     window.location.href = "../index.html";
+                // }).catch((error) => {
+                //     alert(error)
+                // });
+            }
+
+            // const logoutLink = document.getElementById('logout-link');
+            // logoutLink.addEventListener('click', handleSignOut);
+        </script>
+    </body>
+</html>

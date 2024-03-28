@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>Create Itenerary</title>
+    <link rel="stylesheet" href="create_itenerary.css">
+    <script src="https://kit.fontawesome.com/c7f2c86583.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div id="nav-container"></div>
+
+    <div class="container">
+        <h1>Create Itinerary</h1>
+        <form id="itinerary-form">
+            <label for="itinerary-name">Itinerary Name:</label>
+            <input type="text" id="itinerary-name" name="itinerary-name" required>
+
+            <label for="background-color">Background Color:</label>
+            <input type="color" id="background-color" name="background-color">
+                
+            <label for="city">City:</label>
+            <input type="text" id="city" name="city" required>
+        </form>
+        
+        <div id="activities-container"></div>
+        <button type="button" id="add" onclick="addActivityForm()">Add Activity</button>
+        <button type="button" id="submit">Submit Itenerary</button>
+    </div>
+
+    <script src="../src/navCall.js"></script>
+    <script>
+        window.onload = function() {
+            loadNavigation();
+        };
+
+        function addActivityForm() {
+            const activitiesContainer = document.getElementById('activities-container');
+
+            const activityForm = document.createElement('div');
+            activityForm.innerHTML = `
+                <form class="activity-form">
+                    <label for="activity-name">Activity Name:</label>
+                    <input type="text" name="activity-name" required>
+
+                    <label for="activity-location">Location:</label>
+                    <input type="text" name="activity-location" required>
+
+                    <label for="activity-description">Description:</label>
+                    <textarea name="activity-description" rows="3" required></textarea>
+                </form>
+            `;
+
+            activitiesContainer.appendChild(activityForm);
+        }
+
+        // Update color text based on color selection
+        const colorSelector = document.getElementById('background-color');
+        const colorText = document.getElementById('color-text');
+
+        colorSelector.addEventListener('input', function() {
+            colorText.textContent = colorSelector.value;
+        });
+    </script>
+</body>
+</html>

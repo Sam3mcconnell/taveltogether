@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Itineraries</title>
+    <script src="https://kit.fontawesome.com/c7f2c86583.js" crossorigin="anonymous"></script>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0; 
+            font-family: Arial, sans-serif; 
+        }
+    </style>
+</head>
+<body>
+    <div id="nav-container"></div>
+    <div id="userDetails">
+        <p>User ID:  <span id="userId"></span></p>
+    </div>
+    <script src="../src/navCall.js"></script>
+    <script>
+        function fetchUserId() {
+            const uid = sessionStorage.getItem('uid');
+            if (uid) {
+                return uid;
+            } else {
+                return null;
+            }
+        }
+
+        function updateUserDetails() {
+            const userIdSpan = document.getElementById('userId');
+            const userId = fetchUserId();
+            if (userId) {
+                userIdSpan.textContent = userId;
+            } else {
+                userIdSpan.textContent = "Not logged in";
+            }
+        }
+
+        window.onload = function() {
+            updateUserDetails();
+            loadNavigation();
+        };
+    </script>
+</body>
+</html>
