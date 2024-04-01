@@ -23,13 +23,39 @@ export async function getCardDetails(req, res) {
     const tempItinerary = {
       _id: itineraryToFind._id,
       title: itineraryToFind.title,
-      description: itineraryToFind.description,
+      city: itineraryToFind.city,
     };
     const itineraryActivities = await Activity.find({
       _id: { $in: itineraryToFind.activities },
     });
     tempItinerary.activities = itineraryActivities;
     res.status(200).json(tempItinerary);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json(error);
+  }
+}
+
+export async function getItineraries(req, res) {
+  try {
+    const searchUID = req.query.uid;
+    if (searchUID === undefined) {
+      res.status(400).json("Bad request, uid not found from query.");
+    }
+    const user = await User.findOne({uid:searchUID})
+    if(user === undefined){
+      res.status(400).json("Bad request, uid not found from db.");
+    }
+    const userItineraries = [];
+
+    for (const itineraryID of user.itineraries){
+      var tempItinerary = await Itinerary.findById(itineraryID)
+      const tempActivity = await Activity.find({_id: { $in: tempItinerary.activities },});
+      tempItinerary.activities = JSON.stringify(tempActivity)
+      console.log(tempActivity)
+      userItineraries.push(tempItinerary);
+    }
+    res.status(200).json(userItineraries)
   } catch (error) {
     console.log(error);
     res.status(500).json(error);

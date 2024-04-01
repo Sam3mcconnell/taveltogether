@@ -10,7 +10,7 @@ if (cardDataResponse.status !== 200) {
   const cardDetailsJson = await cardDataResponse.json();
   // document.getElementById("json-container").innerHTML = JSON.stringify(cardDetailsJson);
   document.getElementById("card-title").innerHTML = cardDetailsJson.title;
-  document.getElementById("card-description").innerHTML = cardDetailsJson.description
+  document.getElementById("card-city").innerHTML = cardDetailsJson.city
   
   for (var i = 0; i < cardDetailsJson.activities.length; i++) {
     const newActivityDiv = document.createElement('div');
