@@ -23,3 +23,24 @@ export async function fetchCardDetails(id) {
       return new Response("Unknown ID").status(200);
     });
 }
+
+export async function postItineraryData(itineraryData) {
+  try {
+      const response = await fetch('http://localhost:3000/api/postItinerary', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(itineraryData)
+      });
+
+      if (!response.ok) {
+          throw new Error('Failed to post itinerary data');
+      }
+
+      const responseData = await response.json();
+      console.log('Response from server:', responseData);
+  } catch (error) {
+      console.error('Error posting itinerary data:', error.message);
+  }
+}
