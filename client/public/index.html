@@ -89,6 +89,28 @@
                     // Signed up 
                     const user = userCredential.user;
                     sessionStorage.setItem('uid', user.uid);
+                    const bodyJson = {uid:user.uid}
+                    const requestOptions = {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(bodyJson),
+                    };
+                    fetch("http://localhost:3000/api/postNewUser", requestOptions)
+                    .then(response => {
+                        if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        console.log('POST request successful:', data);
+                    })
+                    .catch(error => {
+                        console.error('Error making POST request:', error);
+                    });
+
                     window.location.href = "./pages/main.html";
                 })
                 .catch((error) => {

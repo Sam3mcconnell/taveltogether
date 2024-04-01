@@ -3,6 +3,7 @@ import routes from "./routes/router.js";
 import express from 'express';
 import connectDb from "./utils/db.js";
 import { populateEverything } from "./utils/populateDB.js";
+import bodyParser from 'body-parser';
 
 const app = express();
 const PORT = 3000;
@@ -11,7 +12,7 @@ const PORT = 3000;
 app.use(cors({ origin: "*" }));
 
 await connectDb();
-
+app.use(bodyParser.json());
 app.use("/", routes);
 
 // Start server
@@ -19,7 +20,6 @@ try {
   app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
   });
-  await populateEverything();
 } catch (error) {
   console.log(error);
 }

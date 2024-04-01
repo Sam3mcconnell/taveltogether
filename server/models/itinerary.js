@@ -5,9 +5,13 @@ const itinerarySchema = new Schema({
     type: [Schema.Types.ObjectId],
     ref: "Activity",
   },
-  description:{
+  city:{
     type: String,
     require: true
+  },
+  backgroundColor:{
+    type: String,
+    require: true,
   },
   title:{
     type: String,

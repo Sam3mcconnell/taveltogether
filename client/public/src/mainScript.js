@@ -19,7 +19,7 @@ function renderCards(cards) {
     cardElement.classList.add("card");
     cardElement.innerHTML = `
             <h3>${card.title}</h3>
-            <p>${card.description}</p>
+            <p>${card.city}</p>
         `;
     // cardElement.onclick = handleCardClick(card._id)
     cardElement.onclick = function () {

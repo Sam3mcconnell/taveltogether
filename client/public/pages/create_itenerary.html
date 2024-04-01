@@ -23,43 +23,10 @@
         </form>
         
         <div id="activities-container"></div>
-        <button type="button" id="add" onclick="addActivityForm()">Add Activity</button>
-        <button type="button" id="submit">Submit Itenerary</button>
+        <button type="button" id="add" >Add Activity</button>
+        <button type="button" id="submit" >Submit Itenerary</button>
     </div>
-
     <script src="../src/navCall.js"></script>
-    <script>
-        window.onload = function() {
-            loadNavigation();
-        };
-
-        function addActivityForm() {
-            const activitiesContainer = document.getElementById('activities-container');
-
-            const activityForm = document.createElement('div');
-            activityForm.innerHTML = `
-                <form class="activity-form">
-                    <label for="activity-name">Activity Name:</label>
-                    <input type="text" name="activity-name" required>
-
-                    <label for="activity-location">Location:</label>
-                    <input type="text" name="activity-location" required>
-
-                    <label for="activity-description">Description:</label>
-                    <textarea name="activity-description" rows="3" required></textarea>
-                </form>
-            `;
-
-            activitiesContainer.appendChild(activityForm);
-        }
-
-        // Update color text based on color selection
-        const colorSelector = document.getElementById('background-color');
-        const colorText = document.getElementById('color-text');
-
-        colorSelector.addEventListener('input', function() {
-            colorText.textContent = colorSelector.value;
-        });
-    </script>
+    <script type="module" src="../src/createItinerary.js"></script>
 </body>
 </html>
