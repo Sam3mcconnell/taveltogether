@@ -29,5 +29,6 @@ if (cardDataResponse.status !== 200) {
     newActivityDiv.appendChild(document.createElement('br'));
 
     document.body.appendChild(newActivityDiv);
+    document.body.appendChild(document.createElement('br'))
   }
 }
