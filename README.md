@@ -1,4 +1,4 @@
-# taveltogether
+# Travel Together
 REMEMBER TO NPM INSTALL!
 
 ### Server 
@@ -37,7 +37,7 @@ Do http://localhost:port#/...
 
 To get the uid for the current user, do this const uid = sessionStorage.getItem('uid');
 
-
+---
 ### Color scheme
 - #8D8741 - brown/green
 - #659DBD - blue
