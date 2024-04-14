@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-const db_url = "mongodb://localhost:27017/db";
+const db_url = "mongodb://127.0.0.1/db";
 let db;
 //So that nothing else but what is defined in the schemas goes into the db.
 mongoose.set("strictQuery", true);
