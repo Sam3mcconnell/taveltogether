@@ -55,6 +55,9 @@
             </form>
             <button id="signup-btn" class="btn btn-primary">Sign Up</button>
         </div>
+        <div>
+            <h3 id="errorMessage" style="color:red;text-align: center;"></h3>
+        </div>
     </div>
 
     <script type="module">
@@ -114,12 +117,25 @@
                     window.location.href = "./pages/main.html";
                 })
                 .catch((error) => {
-                    const errorCode = error.code;
-                    const errorMessage = error.message;
-                    alert(errorMessage);
+                    let errorMessage = "";
+                    switch(error.code) {
+                        case "auth/invalid-email":
+                            errorMessage = "Email is empty or invalid.";
+                            break;
+                        case "auth/missing-password":
+                            errorMessage = "Password is missing.";
+                            break;
+                        case "auth/weak-password":
+                            errorMessage = "Password should be at least 6 characters.";
+                            break;
+                        default:
+                            errorMessage = error.message;
+                    }
+                    document.getElementById("errorMessage").innerText = errorMessage;
                 });
+
             } else {
-                alert("Passwords must mach")
+                document.getElementById("errorMessage").innerText = "Passwords do not match."
             }
             
         }
@@ -133,10 +149,23 @@
                     window.location.href = "./pages/main.html";
                 })
                 .catch((error) => {
-                    const errorCode = error.code;
-                    const errorMessage = error.message;
-                    alert(errorMessage);
-                });
+                let errorMessage = "";
+                switch(error.code) {
+                    case "auth/invalid-email":
+                        errorMessage = "Email is empty or invalid.";
+                        break;
+                    case "auth/missing-password":
+                        errorMessage = "Password is missing.";
+                        break;
+                    case "auth/weak-password":
+                        errorMessage = "Password should be at least 6 characters.";
+                        break;
+                    default:
+                        errorMessage = error.message;
+                }
+                document.getElementById("errorMessage").innerText = errorMessage;
+            });
+
         }
         signup.addEventListener('click', userSignUp);
         login.addEventListener('click', userLogIn);
