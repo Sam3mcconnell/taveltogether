@@ -22,6 +22,12 @@ if (cardDataResponse.status !== 200) {
     newActivityDiv.appendChild(newActivityName);
     newActivityDiv.appendChild(document.createElement('br'));
 
+    const newActivityLocation = document.createElement('text');
+    newActivityLocation.textContent = cardDetailsJson.activities[i].location;
+    newActivityLocation.setAttribute('class', 'activity-location');
+    newActivityDiv.appendChild(newActivityLocation);
+    newActivityDiv.appendChild(document.createElement('br'));
+
     const newActivityDesc = document.createElement('text');
     newActivityDesc.textContent = cardDetailsJson.activities[i].description;
     newActivityDesc.setAttribute('class', 'activity-desc');

@@ -57,6 +57,11 @@ body {
     margin-bottom: 0px;
 }
 
+.activity-location {
+    position: relative;
+    top: -30px;
+}
+
 .activity-container {
     background-color: #d6d3ca;
     border-radius: 10px;
