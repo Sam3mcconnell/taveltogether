@@ -15,7 +15,7 @@ body {
 }
 
 #return-button {
-    color:#DAAD86;
+    color:black;
     font-weight: bold;
     font-size: larger;
 
@@ -25,9 +25,23 @@ body {
     left: 10px;
     width: 100px;
     border-radius: 10px;
+    padding: 10px 20px;
+    cursor: pointer;
     
 }
 
+#return-button:hover {
+    background-color: #6ca944;
+}
+
+#return-button i {
+    margin-right: 5px;
+}
+
+#return-button a {
+    color: inherit; /* Inherit color from parent (#return-button) */
+    text-decoration: none; /* Remove underline */
+}
 
 #card-title {
     color: #000000;

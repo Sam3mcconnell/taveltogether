@@ -27,10 +27,28 @@ function addActivityForm() {
 }
 
 function submitItinerary() {
+    document.getElementById('submit').addEventListener('click', function() {
+        // Get all required inputs
+        const requiredInputs = document.querySelectorAll('input[required]');
+    
+        // Check if all required inputs are filled
+        let isFormValid = true;
+        requiredInputs.forEach(input => {
+            if (input.value.trim() === '') {
+                isFormValid = false;
+            }
+        });
+    
+        // If all required inputs are filled, submit the form
+        if (isFormValid) {
+            document.getElementById('itinerary-form').submit();
+        } else {
+            alert("Please fill out all required fields before submitting.");
+        }
+    });
     const uid = sessionStorage.getItem('uid');
     if(uid === undefined || uid === null){
-        console.log("Error uid not found");
-        //TODO: Display something?
+        alert("Please fill out all required fields in the form before submitting.");
         return;
     }
     // Gather data from the form
@@ -66,9 +84,13 @@ function submitItinerary() {
     };
 
     // Send the itinerary data to the backend
-    console.log(itinerary)
     postItineraryData(itinerary)
+
+    // Alert the user and redirect
+    alert("Itinerary submitted successfully!");
+    window.location.href = "/pages/main.html";
 }
+
 // Update color text based on color selection
 const colorSelector = document.getElementById('background-color');
 const colorText = document.getElementById('color-text');
