@@ -8,8 +8,6 @@ import { User } from "../models/user.js";
  */
 export async function getCardDetails(req, res) {
   //Here we put the db fetching etc
-  //TODO: vielä pitää tehdä tälle et query paramilla haetaan tietyllä idllä jne jne tää on
-  //atm vaan kopio siitä alkuperäsestä!!!
   try {
     const searchID = req.query.id;
     if (searchID === undefined) {

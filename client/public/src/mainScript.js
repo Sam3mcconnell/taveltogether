@@ -4,9 +4,6 @@ import { fetchCards } from "./apiCalls.js";
  * @property {string} title Title of the card
  * @property {string} description Description of the card
  */
-//TODO:
-//The type above should be defined in a type file. Just like this: https://stackoverflow.com/questions/43183450/jsdoc-typedef-in-a-separate-file
-//Just makes our life easier in the future. We could also do TS if we feel like it
 
 /**
  * @param {Array.<card>} cards Array of cards
