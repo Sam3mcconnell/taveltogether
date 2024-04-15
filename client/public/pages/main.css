@@ -6,8 +6,8 @@ body {
 }
 .search-container {
     height: 50px;
-    border: 2px solid red;
     display: grid;
+    padding: 30px;
     align-content: center;
     justify-content: center;
 }
@@ -25,10 +25,6 @@ body {
 }
 
 .card-container {
-    border: 2px solid blue;
-}
-.card-container {
-    border: 2px solid blue;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 20px;
@@ -54,4 +50,8 @@ body {
 
 .card p {
     font-size: 1rem;
+}
+#page-container{
+    width: 90%;
+    margin-left: 120px;
 }
